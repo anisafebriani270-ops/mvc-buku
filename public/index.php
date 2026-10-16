@@ -8,8 +8,20 @@ $controller = new BukuController($pdo);
 
 $action = $_GET['action'] ?? 'index';
 
-if ($action === 'create') {
-    $controller->create();
-} else {
-    $controller->index();
+switch ($action) {
+    case 'create':
+        $controller->create();
+        break;
+
+    case 'edit':
+        $controller->edit();
+        break;
+
+    case 'delete':
+        $controller->delete();
+        break;
+
+    default:
+        $controller->index();
+        break;
 }
