@@ -44,3 +44,28 @@ Data buku memiliki atribut:
 - Penerbit
 - Tahun Terbit
 - Kategori
+## Cara Menjalankan Aplikasi
+
+1. Jalankan Apache dan MySQL melalui XAMPP.
+2. Buka phpMyAdmin.
+3. Import file database/buku.sql.
+4. Pastikan konfigurasi database sesuai di config/database.php.
+5. Buka http://localhost/mvc-buku/public/ di browser.
+
+## Pengujian Fitur
+
+- Menampilkan daftar buku.
+- Menambahkan buku baru.
+- Mengedit data buku.
+- Menghapus data buku dengan konfirmasi.
+- Mencari buku berdasarkan judul atau penulis.
+- Memvalidasi input agar kolom wajib diisi dan tahun terbit berupa bilangan bulat positif.
+- Menampilkan pesan keberhasilan atau kegagalan.
+
+## Teknologi
+
+- PHP Native
+- MySQL
+- PDO
+- HTML
+- Git
