@@ -21,11 +21,30 @@ class Buku
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    // Mencari buku berdasarkan judul atau penulis
+    public function search($keyword)
+    {
+        $sql = "SELECT * FROM buku
+                WHERE judul LIKE :judul
+                OR penulis LIKE :penulis
+                ORDER BY id DESC";
+
+        $stmt = $this->pdo->prepare($sql);
+
+        $stmt->execute([
+            ':judul' => '%' . $keyword . '%',
+            ':penulis' => '%' . $keyword . '%'
+        ]);
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     // Mengambil satu buku berdasarkan ID
     public function getById($id)
     {
         $sql = "SELECT * FROM buku WHERE id = :id";
         $stmt = $this->pdo->prepare($sql);
+
         $stmt->execute([
             ':id' => $id
         ]);

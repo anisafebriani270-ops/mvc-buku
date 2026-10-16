@@ -9,6 +9,7 @@
 <body>
     <h1>Daftar Buku</h1>
 
+    <!-- Pesan keberhasilan atau kegagalan -->
     <?php
     $status = $_GET['status'] ?? '';
 
@@ -23,10 +24,28 @@
     }
     ?>
 
+    <!-- Form pencarian buku -->
+    <form action="index.php" method="GET">
+        <input
+            type="text"
+            name="keyword"
+            placeholder="Cari judul atau penulis buku..."
+            value="<?= htmlspecialchars($_GET['keyword'] ?? '') ?>"
+        >
+
+        <button type="submit">Cari</button>
+
+        <a href="index.php">Reset</a>
+    </form>
+
+    <br>
+
+    <!-- Tombol tambah buku -->
     <p>
         <a href="index.php?action=create">+ Tambah Buku</a>
     </p>
 
+    <!-- Tabel daftar buku -->
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
@@ -43,7 +62,13 @@
         <tbody>
             <?php if (empty($buku)): ?>
                 <tr>
-                    <td colspan="7">Belum ada data buku.</td>
+                    <td colspan="7">
+                        <?php if (!empty($_GET['keyword'])): ?>
+                            Buku tidak ditemukan.
+                        <?php else: ?>
+                            Belum ada data buku.
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php else: ?>
                 <?php foreach ($buku as $index => $item): ?>

@@ -12,10 +12,16 @@ class BukuController
         $this->model = new Buku($pdo);
     }
 
-    // Menampilkan daftar buku
+    // Menampilkan daftar buku dan hasil pencarian
     public function index()
     {
-        $buku = $this->model->getAll();
+        $keyword = trim($_GET['keyword'] ?? '');
+
+        if ($keyword !== '') {
+            $buku = $this->model->search($keyword);
+        } else {
+            $buku = $this->model->getAll();
+        }
 
         require __DIR__ . '/../views/buku/index.php';
     }
